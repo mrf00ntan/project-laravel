@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@index')->name('homepage');
+
+
+Route::prefix('admin')->group(function(){
+    Auth::routes();
+
+    Route::get('dashboard', 'AdminController@index')->name('admin_dashboard');
 });
