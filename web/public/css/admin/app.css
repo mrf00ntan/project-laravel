@@ -1,0 +1,40 @@
+body{
+    font-family: "Roboto Mono", sans-serif !important;
+}
+
+main{
+}
+
+main .content{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 5% 20px;
+}
+
+main .content h3{
+    font-weight: 500;
+    font-family: "Roboto Mono", sans-serif !important;
+    color: #878787;
+}
+
+.upload-file-container-wrap{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 20px auto;
+    position: relative;
+}
+.upload-file-container-wrap input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+}
+.upload-file-container{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

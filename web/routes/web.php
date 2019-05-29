@@ -14,8 +14,18 @@
 Route::get('/', 'HomeController@index')->name('homepage');
 
 
-Route::prefix('admin')->group(function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Auth::routes();
 
     Route::get('dashboard', 'AdminController@index')->name('admin_dashboard');
+    
+
+    Route::prefix('news')->group(function(){
+        // show news
+        Route::get('show', 'AdminNewsController@show')->name('news_show');
+        // remove news
+        Route::get('remove', 'AdminNewsController@remove')->name('news_remove');
+        // add news
+        Route::get('add', 'AdminNewsController@add')->name('news_add');
+    });
 });
