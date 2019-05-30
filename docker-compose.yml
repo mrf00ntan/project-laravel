@@ -45,27 +45,27 @@ services:
 ## For XHProf and Xdebug profiler traces
 #      - files:/mnt/files
 
-  nginx:
-    image: wodby/nginx:$NGINX_TAG
-    container_name: "${PROJECT_NAME}_nginx"
-    depends_on:
-      - php
-    environment:
-      NGINX_STATIC_OPEN_FILE_CACHE: "off"
-      NGINX_ERROR_LOG_LEVEL: debug
-      NGINX_BACKEND_HOST: php
-      NGINX_SERVER_ROOT: /var/www/html/web
-      NGINX_VHOST_PRESET: $NGINX_VHOST_PRESET
-#      NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
-    volumes:
-      - ./:/var/www/html
-# For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
-#      - ./:/var/www/html:cached # User-guided caching
-#      - docker-sync:/var/www/html # Docker-sync
-    labels:
-      - 'traefik.backend=${PROJECT_NAME}_nginx'
-      - 'traefik.port=80'
-      - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+#   nginx:
+#     image: wodby/nginx:$NGINX_TAG
+#     container_name: "${PROJECT_NAME}_nginx"
+#     depends_on:
+#       - php
+#     environment:
+#       NGINX_STATIC_OPEN_FILE_CACHE: "off"
+#       NGINX_ERROR_LOG_LEVEL: debug
+#       NGINX_BACKEND_HOST: php
+#       NGINX_SERVER_ROOT: /var/www/html/web/public
+#       NGINX_VHOST_PRESET: $NGINX_VHOST_PRESET
+# #      NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
+#     volumes:
+#       - ./:/var/www/html
+# # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
+# #      - ./:/var/www/html:cached # User-guided caching
+# #      - docker-sync:/var/www/html # Docker-sync
+#     labels:
+#       - 'traefik.backend=${PROJECT_NAME}_nginx'
+#       - 'traefik.port=80'
+#       - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
 
   mailhog:
     image: mailhog/mailhog
@@ -87,25 +87,25 @@ services:
 #      - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
 #      - /path/to/postgres/data/on/host:/var/lib/postgresql/data # Use bind mount
 
-#  apache:
-#    image: wodby/apache:$APACHE_TAG
-#    container_name: "${PROJECT_NAME}_apache"
-#    depends_on:
-#      - php
-#    environment:
-#      APACHE_LOG_LEVEL: debug
-#      APACHE_BACKEND_HOST: php
-#      APACHE_VHOST_PRESET: php
-#      APACHE_DOCUMENT_ROOT: /var/www/html/web
-#    volumes:
-#      - ./:/var/www/html
-## For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
-##      - ./:/var/www/html:cached # User-guided caching
-##      - docker-sync:/var/www/html # Docker-sync
-#    labels:
-#      - 'traefik.backend=${PROJECT_NAME}_apache'
-#      - 'traefik.port=80'
-#      - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+  apache:
+    image: wodby/apache:$APACHE_TAG
+    container_name: "${PROJECT_NAME}_apache"
+    depends_on:
+      - php
+    environment:
+      APACHE_LOG_LEVEL: debug
+      APACHE_BACKEND_HOST: php
+      APACHE_VHOST_PRESET: php
+      APACHE_DOCUMENT_ROOT: /var/www/html/web/public
+    volumes:
+      - ./:/var/www/html
+# For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
+#      - ./:/var/www/html:cached # User-guided caching
+#      - docker-sync:/var/www/html # Docker-sync
+    labels:
+      - 'traefik.backend=${PROJECT_NAME}_apache'
+      - 'traefik.port=80'
+      - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
 
 #  varnish:
 #    image: wodby/varnish:$VARNISH_TAG
@@ -278,7 +278,7 @@ services:
     container_name: "${PROJECT_NAME}_traefik"
     command: -c /dev/null --web --docker --logLevel=INFO
     ports:
-      - '8000:80'
+      - '80:80'
 #      - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

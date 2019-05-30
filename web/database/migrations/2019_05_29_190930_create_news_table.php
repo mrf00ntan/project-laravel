@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('image_path');
-            $table->text('desciption');
+            $table->text('desc');
             $table->boolean('published');
             $table->timestamps();
 

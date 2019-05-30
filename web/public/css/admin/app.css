@@ -1,21 +1,85 @@
 body{
     font-family: "Roboto Mono", sans-serif !important;
+    background-color: #f2f2f2;
+}
+
+header .top-bar{
+    background-color: #353535;
+    font-weight: 500;
+}
+header .top-bar ul{
+    background-color: #353535;
+}
+header .top-bar .is-dropdown-submenu{
+    border: none;
+}
+
+header .top-bar .is-dropdown-submenu a:hover{
+    background-color: #686868;
+}
+header .top-bar .dropdown{
+    background-color: #353535;
+}
+header .top-bar .dropdown a{
+    color: white !important;
+}
+
+
+header .top-bar .dropdown.menu>li.is-dropdown-submenu-parent>a::after{
+    border-color: white transparent transparent;
 }
 
 main{
 }
 
+.paginate .pagination{
+    justify-content: center;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+}
+.paginate .page-item{
+    border-radius: 4px;
+}
+.paginate .page-item a{
+    border-radius: 4px;
+    padding: 10px 14px;
+}
+
+.paginate .disable{
+    padding: 10px 14px;
+}
+.paginate .active{
+    background-color: #b2cfff;
+    padding: 10px 14px;
+}
+
 main .content{
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    background-color:white;
+    max-width: 600px;
+    margin: 2% auto;
+    border-radius: 5px;
     padding: 5% 20px;
+}
+
+
+main .content .error{
+    font-weight: 400 !important;
+}
+
+main .content .error span{
+    text-decoration: underline;
+    font-weight: 600 !important;
 }
 
 main .content h3{
     font-weight: 500;
     font-family: "Roboto Mono", sans-serif !important;
     color: #878787;
+}
+.bold{
+    font-weight: 600;
 }
 
 .upload-file-container-wrap{
